@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import keys from '../../config/reactKeys'
 
 const API = '/api/books';
-const PROFILE = '/profile';
+
 
 class MainApp extends Component {
   constructor(props) {
@@ -20,11 +20,14 @@ class MainApp extends Component {
       .then(response => response.json())
       .then(data => this.setState({ books: data }))
       .catch(err => console.log(err));
+
+      
 /*     fetch(PROFILE)
       .then(response => response.json())
       .then(data => this.setState({ profile: data })); */
   };
 
+  
   render() {
     const { books } = this.state;
     const { profile } = this.state;

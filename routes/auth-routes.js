@@ -30,7 +30,10 @@ router.get('/google', passport.authenticate('google', {
 // hand control to passport to use code to grab profile info
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     // res.send(req.user);
-    res.redirect('http://localhost:3000/profile');
+    console.log(req.body);
+    console.log(res);
+    console.log(req);
+    res.redirect('http://localhost:3000/profile/');
 });
 
 module.exports = router;

@@ -7,6 +7,7 @@ import Schedule from '../Schedule'
 import Fetch from '../Fetch'
 import MainApp from '../MainApp/MainApp'
 import Profile from '../MainApp/Profile'
+import Tasks from '../MainApp/Tasks'
 
 const Main = () => (
     <main>
@@ -17,6 +18,7 @@ const Main = () => (
         <Route path='/app' component={MainApp}/>
         <Route path='/fetch' component={Fetch}/>
         <Route path='/profile' component={Profile}/>
+        <Route path='/tasks' component={Tasks}/>
       </Switch>
     </main>
 )

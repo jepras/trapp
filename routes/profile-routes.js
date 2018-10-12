@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 var User = require('../models/user-model')
 
-/* const authCheck = (req, res, next) => {
+const authCheck = (req, res, next) => {
     if(!req.user){
         res.redirect('/auth/login');
     } else {
@@ -11,14 +11,14 @@ var User = require('../models/user-model')
 };
 
 router.get('/', authCheck, (req, res) => {
-    res.json('profile', { user: req.user });
-}); */
+    res.send({ user: req.user });
+});
 
-router.route('/')
+/* router.route('/')
     .get((req, res) => {
         User.find({}, (err, person) => {
             res.json(person)
         })  
-    })
+    }) */
 
 module.exports = router;

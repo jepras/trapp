@@ -4,8 +4,11 @@ var bodyParser = require("body-parser");
 
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
+const taskRouter = require('./routes/task-router');
+
 const passportSetup = require('./config/passport-setup');
 const keys = require('./config/keys');
 
@@ -15,6 +18,8 @@ var bodyParser = require("body-parser");
 const app = express();
 
 app.use(cookieSession({
+  name: 'awesomeCookie',
+  httpOnly: false,
   maxAge: 24 * 60 * 60 * 1000,
   keys: [keys.session.cookieKey]
 }));
@@ -50,5 +55,11 @@ app.get('/api/hello', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/api/books', bookRouter);
+app.use('/api/tasks', taskRouter);
+
+app.use(function(err,req,res,next) {
+  /* console.log(err) */
+  res.status(422).send({error: err.message});
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
