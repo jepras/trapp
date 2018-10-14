@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const passportSetup = require('../config/passport-setup');
-var path = require("path");
+var path = require('path');
 
 /* bookRouter.route('/')
     .get((req, res) => {
@@ -17,23 +17,26 @@ var path = require("path");
 
 // auth logout
 router.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+  req.logout();
+  res.redirect('http://localhost:3000/');
 });
 
 // auth with google+
-router.get('/google', passport.authenticate('google', {
+router.get(
+  '/google',
+  passport.authenticate('google', {
     scope: ['profile']
-}));
+  })
+);
 
 // callback route for google to redirect to
 // hand control to passport to use code to grab profile info
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    // res.send(req.user);
-    console.log(req.body);
-    console.log(res);
-    console.log(req);
-    res.redirect('http://localhost:3000/profile/');
+  // res.send(req.user);
+  console.log(req.body);
+  console.log(res);
+  console.log(req);
+  res.redirect('http://localhost:3000/profile/');
 });
 
 module.exports = router;

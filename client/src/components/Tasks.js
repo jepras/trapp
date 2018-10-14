@@ -12,55 +12,56 @@ class Tasks extends Component {
       query: ''
     };
     // Set this for functions
-/*     this.handleChange = this.handleChange.bind(this);
+    /*     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this); */
   }
 
   getInitialState() {
-    return({
+    return {
       teams: []
-    });
+    };
   }
 
   // Set state to input as user types
-  handleChange = (e) => {
-    this.setState({query: e.target.value})
-  }
+  handleChange = e => {
+    this.setState({ query: e.target.value });
+  };
 
-  handleSubmit = (e) => {
-    e.preventDefault(); 
+  handleSubmit = e => {
+    e.preventDefault();
 
     var query = this.state.query;
     // Fetch from url + query
     fetch(TASKAPI + query)
-    .then(function(data) {
-      // return data as json & save in teams state
-      return data.json();
-    })
-    .then( json => {
-      this.setState({
-        teams: json
+      .then(function(data) {
+        // return data as json & save in teams state
+        return data.json();
       })
-    }).catch(e => {
-      console.log(e)
-    })
-  }
+      .then(json => {
+        this.setState({
+          teams: json
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   render() {
     // store teams within render to use in return
     var teams = this.state.teams;
-    console.log(teams);
+    /* console.log(teams); */
 
     // map teams to function. Allows to get index & multiple teams
     teams = teams.map(function(team, index) {
-      return(
+      return (
         <li key={index}>
-          <p className={team.status.toString()}></p>
+          <p className={team.status.toString()} />
           <p className="name">Task owner: {team.name}</p>
           <p className="description">Task description: {team.description}</p>
           <p className="date">Date logged: {team.date}</p>
         </li>
-      )
+      );
     });
 
     return (
@@ -71,13 +72,19 @@ class Tasks extends Component {
         <form id="search" onSubmit={this.handleSubmit}>
           <label>Enter team:</label>
           {/* saves value in handleChange every time it changes */}
-          <input type="text" onChange={this.handleChange} placeholder="team name" required /> {/* deleted value={this.state.value} */}
+          <input
+            type="text"
+            onChange={this.handleChange}
+            placeholder="team name"
+            required
+          />{' '}
+          {/* deleted value={this.state.value} */}
           <input type="submit" value="Find Teams" />
         </form>
-        
-        <ul>{ teams }</ul>
+
+        <ul>{teams}</ul>
         <h1>Add task</h1>
-{/*         <form id="add" onSubmit={this.handleAdd}>
+        {/*         <form id="add" onSubmit={this.handleAdd}>
           <label>Add new task</label>
           <input type="text" onChange={this.handleChangeWho} placeholder="name" />
           <input type="text" onChange={this.handleChangeDescription} placeholder="descr" />
@@ -90,4 +97,4 @@ class Tasks extends Component {
   }
 }
 
-export default Tasks
+export default Tasks;
