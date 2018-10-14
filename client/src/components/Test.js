@@ -1,34 +1,45 @@
-/* import React from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+class Test extends React.Component {
+  render() {
+    console.log(this.props);
+    const { posts } = this.props;
+    const postList = posts.length ? (
+      posts.map(post => {
+        return (
+          <div className="post card" key={post.id}>
+            <div className="card-content">
+              <Link to={'/' + post.id}>
+                <span className="card-title red-text">{post.title}</span>
+              </Link>
+              <p>{post.body}</p>
+            </div>
+          </div>
+        );
+      })
+    ) : (
+      <div className="center">No posts to show</div>
+    );
 
-const ObjectTest = {
-  1: {
-      id : 1,
-      name:'ABC'
-  },
-  3: {
-      id: 3,
-      name:'DEF'
+    return (
+      <div>
+        <div className="container home">
+          <h4 className="center">Home</h4>
+          {postList}
+        </div>
+      </div>
+    );
   }
 }
 
-class App extends React.Component {
+// Gives this component the props from the store state
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  };
+};
 
-   constructor(props) {
-      super(props);
-   };
-
-   render() {
-      return (
-         <div>
-         {
-            Object.keys(ObjectTest).map((value,index)=>{
-               <p>id is {ObjectTest[value].id} ; name is {ObjectTest[value].name}</p>
-            })
-         }
-         </div>
-      );
-   }
-}
-
-export default App; */
+// Gives test super powers of props
+export default connect(mapStateToProps)(Test);

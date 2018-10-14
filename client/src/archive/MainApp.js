@@ -1,3 +1,4 @@
+/* 
 import React, { Component } from 'react';
 import Profile from './Profile';
 import New from './New';
@@ -16,26 +17,12 @@ class MainApp extends Component {
   }
 
   componentDidMount() {
-    fetch('/profile')
-      .then(function(data) {
-        // return data as json & save in teams state
-        return data.json();
-      })
-      .then(json => {
-        this.setState({
-          profile: json
-        });
-      })
-      .catch(e => {
-        console.log(e);
-      });
-
     this.callApi();
   }
 
   /* componentDidUpdate() {
     this.callApi();
-  } */
+  } 
 
   callApi = () => {
     fetch('api/tasks?team=newbs')
@@ -56,7 +43,7 @@ class MainApp extends Component {
     var cook = getCookie('awesomeCookie');
 
     /* var { profile } = this.state;
-    console.log(profile); */
+    console.log(profile); 
 
     var pre = this.state.pre;
     pre = pre.map(function(pr, i) {
@@ -87,3 +74,4 @@ class MainApp extends Component {
 }
 
 export default MainApp;
+ */

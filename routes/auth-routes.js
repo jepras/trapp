@@ -36,7 +36,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   console.log(req.body);
   console.log(res);
   console.log(req);
-  res.redirect('http://localhost:3000/profile/');
+  res.redirect('http://localhost:3000/app');
 });
 
 module.exports = router;
