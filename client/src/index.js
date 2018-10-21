@@ -13,7 +13,11 @@ import App from './components/App';
 
 // Connect store with reducer
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  window.STATE_FROM_SERVER,
+  applyMiddleware(thunk)
+);
 
 store.dispatch(fetchAllTodos());
 

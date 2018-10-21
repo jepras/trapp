@@ -2,21 +2,23 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Front from './Frontpage';
-import Tasks from './Tasks';
-import Login from './Login';
+import TasksPerTeam from './tasks/TasksPerTeam';
+import Login from './auth/Login';
+import SignUp from './auth/SignUp';
 
-import Test from './Test';
-import Teams from './Teams';
-import ReduxApp from './ReduxApp';
+import Teams from './tasks/Teams';
+import Dashboard from './dashboard/Dashboard';
+import CreateTodo from '../containers/CreateTodo';
 
 const Main = () => (
   <main>
     <Switch>
       <Route exact path="/" component={Front} />
-      <Route path="/app" component={ReduxApp} />
+      <Route path="/app" component={Dashboard} />
+      <Route path="/log" component={CreateTodo} />
       <Route path="/login" component={Login} />
-      <Route path="/tasks" component={Tasks} />
-      <Route path="/test" component={Test} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/tasks" component={TasksPerTeam} />
       <Route path="/teams/:team_id" component={Teams} />
     </Switch>
   </main>

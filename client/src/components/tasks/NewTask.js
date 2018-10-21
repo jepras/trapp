@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 
-class New extends Component {
-  constructor(props) {
-    super(props);
-
-    // Initiate states for field input
-    this.state = {
-      name: '',
-      description: '',
-      team: '',
-      date: ''
-    };
-  }
+class NewTask extends Component {
+  state = {
+    name: '',
+    description: '',
+    team: ''
+  };
 
   handleNameChange = e => {
     this.setState({ name: e.target.value });
@@ -25,28 +19,27 @@ class New extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let databody = {
-      name: this.state.name,
-      description: this.state.description,
-      team: this.state.team,
-      date: Date.now()
-    };
+    if (
+      this.state.name.trim() &&
+      this.state.description.trim() &&
+      this.state.team.trim()
+    ) {
+      this.props.onAddTodo(this.state);
+      this.handleReset();
+    }
+  };
 
-    fetch('/api/tasks', {
-      method: 'POST',
-      body: JSON.stringify(databody),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .then(this.props.callApi());
+  handleReset = () => {
+    this.setState({
+      name: '',
+      description: '',
+      team: ''
+    });
   };
 
   render() {
     return (
-      <div>
+      <div className="container">
         <form onSubmit={this.handleSubmit}>
           <label>
             Name
@@ -82,4 +75,4 @@ class New extends Component {
   }
 }
 
-export default New;
+export default NewTask;

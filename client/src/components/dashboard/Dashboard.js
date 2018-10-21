@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import CreateTodo from '../containers/CreateTodo';
-import TodoList from '../containers/TodoList';
-import { getCookie } from '../utils/cookie';
+import CreateTodo from '../../containers/CreateTodo';
+import TaskList from '../../containers/TaskList';
+import { getCookie } from '../../utils/cookie';
 
-class MainApp extends Component {
+class Dashboard extends Component {
   render() {
+    console.log(this.props);
     var cook = getCookie('awesomeCookie');
+    console.log('cookie: ' + cook);
 
     return (
       <div className="container">
@@ -15,7 +17,7 @@ class MainApp extends Component {
               <CreateTodo />
             </div>
             <div className="col-md-6">
-              <TodoList />
+              <TaskList />
             </div>
           </div>
         ) : (
@@ -26,4 +28,4 @@ class MainApp extends Component {
   }
 }
 
-export default MainApp;
+export default Dashboard;

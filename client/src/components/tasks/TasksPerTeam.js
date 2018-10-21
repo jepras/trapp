@@ -55,17 +55,24 @@ class Tasks extends Component {
     // map teams to function. Allows to get index & multiple teams
     teams = teams.map(function(team, index) {
       return (
-        <li key={index}>
-          <p className={team.status.toString()} />
-          <p className="name">Task owner: {team.name}</p>
-          <p className="description">Task description: {team.description}</p>
-          <p className="date">Date logged: {team.date}</p>
-        </li>
+        <div className="collection" key={index}>
+          <div className="collection-item row">
+            <div className="col s3">
+              <p>
+                <strong>{team.name}</strong>
+              </p>
+            </div>
+
+            <div className="col s8">
+              <p>{team.description}</p>
+            </div>
+          </div>
+        </div>
       );
     });
 
     return (
-      <div>
+      <div className="container">
         {/* triggers handle submit on submit */}
         <h1>Get tasks for specific team</h1>
 

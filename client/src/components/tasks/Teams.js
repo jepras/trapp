@@ -19,35 +19,26 @@ class Teams extends Component {
         });
       });
     console.log(this.post);
-
-    /* .then(res => {
-      this.setState({
-        post: res.data
-      });
-      console.log(res.data);
-    }); */
   }
   render() {
     var post = this.state.post;
     post = post.map(function(team, index) {
       return (
-        <li key={index}>
-          <p className={team.status.toString()} />
-          <p className="name">Task owner: {team.name}</p>
-          <p className="description">Task description: {team.description}</p>
-          <p className="date">Date logged: {team.date}</p>
-        </li>
+        <div className="collection" key={index}>
+          <div className="collection-item row">
+            <div className="col s3">
+              <p>
+                <strong>{team.name}</strong>
+              </p>
+            </div>
+
+            <div className="col s8">
+              <p>{team.description}</p>
+            </div>
+          </div>
+        </div>
       );
     });
-
-    /* const post = this.state.post ? (
-      <div className="post">
-        <h4 className="center">{this.state.post.name}</h4>
-        <p>{this.state.post.description}</p>
-      </div>
-    ) : (
-      <div className="center">Loading post...</div>
-    ); */
 
     return (
       <div className="container">

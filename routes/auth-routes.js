@@ -34,8 +34,6 @@ router.get(
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // res.send(req.user);
   console.log(req.body);
-  console.log(res);
-  console.log(req);
   res.redirect('http://localhost:3000/app');
 });
 

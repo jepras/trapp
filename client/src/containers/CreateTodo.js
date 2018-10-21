@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createTodo } from '../actions';
-import NewRedux from '../components/NewRedux';
+import NewTask from '../components/tasks/NewTask';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(NewRedux);
+)(NewTask);

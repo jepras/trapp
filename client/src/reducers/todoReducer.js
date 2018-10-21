@@ -1,16 +1,11 @@
-// postReducer.js
+// postReducer.
 
 import {
   ADD_TODO,
   DELETE_TODO,
   FETCH_TODO,
-  VisibilityFilters
+  TOGGLE_TODO
 } from '../actions/types';
-
-const initialState = {
-  visibilityFilter: VisibilityFilters.SHOW_ALL,
-  todos: []
-};
 
 export default function todoReducer(state = [], action) {
   switch (action.type) {
@@ -20,6 +15,18 @@ export default function todoReducer(state = [], action) {
       return state.filter(todo => todo._id !== action.payload.id);
     case FETCH_TODO:
       return action.todos;
+
+    // Toggle todo for show completeness
+    case TOGGLE_TODO:
+      return state.map((todo, id) => {
+        if (id === action.id) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          });
+        }
+        return todo;
+      });
+
     default:
       return state;
   }

@@ -1,20 +1,14 @@
 // index.js
 
-import {
-  ADD_TODO,
-  DELETE_TODO,
-  FETCH_TODO,
-  SET_VISIBILITY_FILTER,
-  VisibilityFilters
-} from './types';
+import { ADD_TODO, DELETE_TODO, FETCH_TODO } from './types';
 import axios from 'axios';
 
 const apiUrl = 'http://localhost:3000/api/tasks';
 
-export const createTodo = ({ name, description, team }) => {
+export const createTodo = ({ name, description, team, date }) => {
   return dispatch => {
     return axios
-      .post(`${apiUrl}`, { name, description, team })
+      .post(`${apiUrl}`, { name, description, team, date })
       .then(response => {
         dispatch(createTodoSuccess(response.data));
       })
@@ -31,7 +25,8 @@ export const createTodoSuccess = data => {
       _id: data._id,
       name: data.name,
       description: data.description,
-      team: data.team
+      team: data.team,
+      date: new Date()
     }
   };
 };
@@ -91,6 +86,7 @@ export const fetchTeamTodos = id => {
   };
 };
 
-export function setVisibilityFilter(filter) {
-  return { type: SET_VISIBILITY_FILTER, filter };
-}
+export const toggleTodo = id => ({
+  type: 'TOGGLE_TODO',
+  id
+});

@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Todo from '../components/Todo';
+import Task from '../components/tasks/Task';
 import { deleteTodo } from '../actions';
 
-function TodoList({ todos, onDelete }) {
+function TaskList({ todos, onDelete }) {
   if (!todos.length) {
     return <div>No Todos</div>;
   }
+
   return (
-    <div>
+    <div className="collection">
       {todos.map(todo => {
-        return <Todo todo={todo} onDelete={onDelete} key={todo._id} />;
+        return <Task todo={todo} onDelete={onDelete} key={todo._id} />;
       })}
     </div>
   );
@@ -34,4 +35,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoList);
+)(TaskList);
