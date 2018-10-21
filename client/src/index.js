@@ -12,6 +12,7 @@ import { fetchAllTodos } from './actions/index';
 import App from './components/App';
 
 // Connect store with reducer
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.dispatch(fetchAllTodos());

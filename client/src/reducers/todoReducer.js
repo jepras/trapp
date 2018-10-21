@@ -1,6 +1,16 @@
 // postReducer.js
 
-import { ADD_TODO, DELETE_TODO, FETCH_TODO } from '../actions/types';
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  FETCH_TODO,
+  VisibilityFilters
+} from '../actions/types';
+
+const initialState = {
+  visibilityFilter: VisibilityFilters.SHOW_ALL,
+  todos: []
+};
 
 export default function todoReducer(state = [], action) {
   switch (action.type) {

@@ -1,6 +1,12 @@
 // index.js
 
-import { ADD_TODO, DELETE_TODO, FETCH_TODO } from './types';
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  FETCH_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './types';
 import axios from 'axios';
 
 const apiUrl = 'http://localhost:3000/api/tasks';
@@ -84,3 +90,7 @@ export const fetchTeamTodos = id => {
       });
   };
 };
+
+export function setVisibilityFilter(filter) {
+  return { type: SET_VISIBILITY_FILTER, filter };
+}
